@@ -1,0 +1,45 @@
+<html><meta charset="UTF-8">
+<script src="js2php.js"></script>
+<script>
+
+phc = new phpcall( 'example.php' , php_callback1  );
+
+function example1(){
+    alert('PHP: 100 + 300 = ?');
+    phc.post('example_class::add')( 100 , 300 );
+}
+
+function example2(){
+    alert('PHP: date = ?');
+    phc.get('get_date_info')( 'F j, Y, g:i a' );
+}
+
+function example3(){
+    alert('Hello ?!');
+    phc.get();
+}
+
+function example4(){
+    phc.ok = php_callback2;
+    phc.type = 'text';
+    phc.get('_phpinfo')();
+}
+
+function php_callback1(data){
+    alert( data );
+}
+
+function php_callback2(data){
+    document.getElementById('content').innerHTML = data;
+}
+</script>
+
+<input type=button value=example1 onclick="example1()">
+<input type=button value=example2 onclick="example2()">
+<input type=button value=example3 onclick="example3()">
+<input type=button value=example4 onclick="example4()">
+
+<br />
+<br />
+
+<div id=content>
