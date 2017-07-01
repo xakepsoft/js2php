@@ -2,27 +2,27 @@
 <script src="https://raw.githubusercontent.com/xakepsoft/js2php/master/js2php.js"></script>
 <script>
 
-phc = new phpcall( 'example.php' , php_callback1  );
+php = new js2php( 'example.php' , php_callback1  );
 
 function example1(){
     alert('PHP: 100 + 300 = ?');
-    phc.post('example_class::add')( 100 , 300 );
+    php.post('example_class::add')( 100 , 300 );
 }
 
 function example2(){
     alert('PHP: date = ?');
-    phc.get('get_date_info')( 'F j, Y, g:i a' );
+    php.get('get_date_info')( 'F j, Y, g:i a' );
 }
 
 function example3(){
     alert('Hello ?!');
-    phc.get();
+    php.get();
 }
 
 function example4(){
-    phc.ok = php_callback2;
-    phc.type = 'text';
-    phc.get('_phpinfo')();
+    php.ok = php_callback2;
+    php.type = 'text';
+    php.get('_phpinfo')();
 }
 
 function php_callback1(data){
