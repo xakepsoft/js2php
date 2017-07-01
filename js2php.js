@@ -1,4 +1,4 @@
-    function phpcall( url , ok , err , type ) {
+    function js2php( url , ok , err , type ) {
         this.url = url.trim();
         this.ok = typeof ok === 'function'?ok:null;
         this.err = typeof err === 'function'?err:null;
