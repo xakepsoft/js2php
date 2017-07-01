@@ -3,31 +3,53 @@ Call php functions from html/javascript
 
 
 
-Example:
-
-    p = new phpcall( string $url [ ,function callback_ok = null [ ,function callback_err = null ] [ ,string responseType = '' ] ] );
-    p.get('php_user_function')(param1 , .... , paramN);
 
 
-In order to call user defined php functions and/or static methods from html/js:
 
-    1) include js2php.js file in html document
+Examples:
 
-        for example:
+    data_callback = function(data) {
+        alert(data);
+    }
 
-            <script src="https://raw.githubusercontent.com/xakepsoft/js2php/master/js2php.js"></script>
-
-
-    2) include js2php.inc.php in php files at the top
-
-        for example:
-
-            require ('js2php.inc.php');
+    php = new js2php( 'example.php' , data_callback  );
+    php.post('add_two_numbers')( 100 , 200 );
 
 
-    3) call user defined php functions from js
+    // Sometimes HTTP_POST requests are not required and HTTP_GET requests can be used instead,
+    // it should be noted that HTTP_GET requests are usually cached by browsers or proxy servers.
+    // If you don't know which one to use then stick with POST.
 
-        for example:
+    php = new js2php( 'example.php' , data_callback  );
+    php.get('add_two_numbers')( 100 , 200 );   // <-- HTTP_GET request
 
-            php = new phpcall( 'http://www.example.com/files/example.php' , callback_ok  );
-            php.post('php_example_function')( 10.987 , 300 , 'some text' );
+
+    // There are two callbacks, both are optional. First callback gets called when data is returned from php function call.
+    // The second callback is called when there is an error and status code != 200
+
+    php = new js2php( 'example.php' , data_callback , err_callback );
+    php.post('delete_product')( 10034543 );
+
+
+    // Callback references can be changed or removed after object creation 
+
+    php = new js2php( 'example.php' , data_callback , err_callback );
+    php.ok = another_callback;
+    php.err = null;
+    php.post('search_product_by_ean13')( '8018417232879' );
+
+    // The fourth parameter - response type can be changed later as well...
+    php = new js2php( 'example.php' , data_callback , null , 'json' );
+    php.type = 'json';
+    php.post('update_product_name')( 10034543 , 'Very good product!' );
+
+    // There are three basic response types - "text", "json", "blob"
+    // If there is no need for an error callback then response type can be placed as a third parameter
+    php = new js2php( 'example.php' , data_callback , 'json' );
+    php.post('list_all_products')();
+
+    // If there is not need to call specific php function just some url...
+    php = new js2php( 'http://www.example.com/some-stuff/example.php' , data_callback , 'text' );
+    php.get(); // OR php.post();
+
+
