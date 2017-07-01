@@ -39,7 +39,7 @@ Examples:
     php.post('search_product_by_ean13')( '8018417232879' );
 
     // The fourth parameter - response type can be changed later as well...
-    php = new js2php( 'example.php' , data_callback , null , 'json' );
+    php = new js2php( 'example.php' , data_callback , null , 'text' );
     php.type = 'json';
     php.post('update_product_name')( 10034543 , 'Very good product!' );
 
@@ -48,7 +48,7 @@ Examples:
     php = new js2php( 'example.php' , data_callback , 'json' );
     php.post('list_all_products')();
 
-    // If there is not need to call specific php function just some url...
+    // If there is not need to call a php function only some url...
     php = new js2php( 'http://www.example.com/some-stuff/example.php' , data_callback , 'text' );
     php.get(); // OR php.post();
 
