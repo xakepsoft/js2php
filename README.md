@@ -43,13 +43,16 @@ Examples:
     php.type = 'json';
     php.post('update_product_name')( 10034543 , 'Very good product!' );
 
+
     // There are three basic response types - "text", "json", "blob"
     // If there is no need for an error callback then response type can be placed as a third parameter
     php = new js2php( 'example.php' , data_callback , 'json' );
     php.post('list_all_products')();
+    //php.get('list_all_products')();
 
-    // If there is not need to call a php function only some url...
+
+    // Simple HTTP requests with parameters can be sent as well
     php = new js2php( 'http://www.example.com/some-stuff/example.php' , data_callback , 'text' );
-    php.get(['sd'=>'sad']); // OR php.post();
-
+    php.post( {'Hello':'World!'} );
+    //php.get( {'Hello':'World!'} );
 
