@@ -50,6 +50,6 @@ Examples:
 
     // If there is not need to call a php function only some url...
     php = new js2php( 'http://www.example.com/some-stuff/example.php' , data_callback , 'text' );
-    php.get(); // OR php.post();
+    php.get(['sd'=>'sad']); // OR php.post();
 
 
