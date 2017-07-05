@@ -7,13 +7,13 @@ Call php functions from html/javascript
 
 Examples:
 
-    // Callback function for return data from php
+    // Callback function for data returned from php
     data_callback = function(data)
     {
         alert(data);
     }
 
-    // Create js2php object and call php function "add_two_numbers(x,y)" in "example.php"
+    // Create js2php object and call php function "add_two_numbers(x,y)" defined in "example.php"
     php = new js2php( 'example.php' , data_callback  );
     php.post('add_two_numbers')( 100 , 200 );
 
